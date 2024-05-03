@@ -257,3 +257,81 @@
   });
 
 })()
+
+
+//Validate Email
+
+const correo = document.getElementById("email");
+correo.addEventListener("input", function (event) {
+  if (correo.validity.patternMismatch) {
+    correo.setCustomValidity(
+      "Debe ser una dirección de correo electrónico válida."
+    );
+  } else {
+    correo.setCustomValidity("");
+  }
+});
+
+
+document
+.getElementById("contact-form")
+.addEventListener("submit", function (event) {
+  const button = document.getElementById("button1");
+  button.disabled = true;
+  button.textContent = "Enviando...";
+  button.classList.add("btn-dark");
+  event.preventDefault();
+
+  // Obtiene los datos del formulario
+  const name = document.getElementById("name").value;
+  const subject = document.getElementById("subject").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  // Configura los datos para enviar el correo usando EmailJS
+  const data = {
+    service_id: "service_39ze5mq",
+    template_id: "template_o815d49",
+    user_id: "TU_USER_ID",
+    template_params: {
+      user_name: name,
+      email: email,
+      message: message,
+      subject: subject,
+    },
+  };
+
+  // Envía el correo usando EmailJS
+  emailjs
+    .send(
+      "default_service",
+      data.template_id,
+      data.template_params,
+      "Zgx1Ypfwsqv7g_YyO"
+    )
+    .then(
+      function (response) {
+        //alert("¡Mensaje enviado correctamente!");
+        Swal.fire({
+          title: "Mensaje Enviado!",
+          text: "Nos pondremos en contacto contigo lo antes posible",
+          icon: "success",
+          confirmButtonText: "Volver al inicio",
+          confirmButtonColor: "#38bdf8",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Aquí puedes realizar la acción si el usuario hizo clic en el botón de confirmación
+            window.location.href = "index.html";
+          }
+        });
+        // Puedes redirigir a una página de agradecimiento aquí si lo deseas.
+        button.disabled = false;
+        //window.location.href = "index.html";
+      },
+      function (error) {
+        alert(
+          "Hubo un error al enviar el mensaje. Por favor, inténtalo nuevamente."
+        );
+      }
+    );
+});
