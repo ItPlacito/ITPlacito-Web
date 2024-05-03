@@ -463,7 +463,8 @@
                     <br>Nos pondremos en contacto contigo lo antes posible.
                   </div>
                 </div>
-                <div class="text-center"><button id="button1" type="submit">Enviar Mensaje</button></div>
+                <div class="text-center"><button id="button1" type="submit" onclick="sendEmail()">Enviar
+                    Mensaje</button></div>
               </form>
             </div>
           </div>
@@ -507,7 +508,15 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "Zgx1Ypfwsqv7g_YyO",
+      });
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

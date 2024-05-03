@@ -6,7 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -115,7 +115,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -124,7 +124,7 @@
   /**
    * Mobile nav dropdowns activate
    */
-  on('click', '.navbar .dropdown > a', function(e) {
+  on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
@@ -134,7 +134,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -201,9 +201,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -272,66 +272,66 @@ correo.addEventListener("input", function (event) {
   }
 });
 
+function sendEmail() {
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (event) {
+      const button = document.getElementById("button1");
+      button.disabled = true;
+      button.textContent = "Enviando...";
+      button.classList.add("btn-dark");
+      event.preventDefault();
 
-document
-.getElementById("contact-form")
-.addEventListener("submit", function (event) {
-  const button = document.getElementById("button1");
-  button.disabled = true;
-  button.textContent = "Enviando...";
-  button.classList.add("btn-dark");
-  event.preventDefault();
+      // Obtiene los datos del formulario
+      const name = document.getElementById("name").value;
+      const subject = document.getElementById("subject").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
 
-  // Obtiene los datos del formulario
-  const name = document.getElementById("name").value;
-  const subject = document.getElementById("subject").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
+      // Configura los datos para enviar el correo usando EmailJS
+      const data = {
+        service_id: "service_39ze5mq",
+        template_id: "template_o815d49",
+        user_id: "TU_USER_ID",
+        template_params: {
+          user_name: name,
+          email: email,
+          message: message,
+          subject: subject,
+        },
+      };
 
-  // Configura los datos para enviar el correo usando EmailJS
-  const data = {
-    service_id: "service_39ze5mq",
-    template_id: "template_o815d49",
-    user_id: "TU_USER_ID",
-    template_params: {
-      user_name: name,
-      email: email,
-      message: message,
-      subject: subject,
-    },
-  };
-
-  // Envía el correo usando EmailJS
-  emailjs
-    .send(
-      "default_service",
-      data.template_id,
-      data.template_params,
-      "Zgx1Ypfwsqv7g_YyO"
-    )
-    .then(
-      function (response) {
-        //alert("¡Mensaje enviado correctamente!");
-        Swal.fire({
-          title: "Mensaje Enviado!",
-          text: "Nos pondremos en contacto contigo lo antes posible",
-          icon: "success",
-          confirmButtonText: "Volver al inicio",
-          confirmButtonColor: "#38bdf8",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Aquí puedes realizar la acción si el usuario hizo clic en el botón de confirmación
-            window.location.href = "index.html";
+      // Envía el correo usando EmailJS
+      emailjs
+        .send(
+          data.service_id,
+          data.template_id,
+          data.template_params
+        )
+        .then(
+          function (response) {
+            //alert("¡Mensaje enviado correctamente!");
+            Swal.fire({
+              title: "Mensaje Enviado!",
+              text: "Nos pondremos en contacto contigo lo antes posible",
+              icon: "success",
+              confirmButtonText: "Volver al inicio",
+              confirmButtonColor: "#38bdf8",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // Aquí puedes realizar la acción si el usuario hizo clic en el botón de confirmación
+                window.location.href = "index.html";
+              }
+            });
+            // Puedes redirigir a una página de agradecimiento aquí si lo deseas.
+            button.disabled = false;
+            //window.location.href = "index.html";
+          },
+          function (error) {
+            alert(
+              "Hubo un error al enviar el mensaje. Por favor, inténtalo nuevamente."
+            );
           }
-        });
-        // Puedes redirigir a una página de agradecimiento aquí si lo deseas.
-        button.disabled = false;
-        //window.location.href = "index.html";
-      },
-      function (error) {
-        alert(
-          "Hubo un error al enviar el mensaje. Por favor, inténtalo nuevamente."
         );
-      }
-    );
-});
+    });
+}
