@@ -437,12 +437,13 @@
 
           <div class="col-lg-5 col-md-8">
             <div class="form">
-              <form netlify class="php-email-form">
+              <form method="POST" data-netlify="true" data-netlify-recaptcha="true" class="php-email-form">
                 <div class="form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
                 </div>
                 <div class="form-group mt-3">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo"
+                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" required>
                 </div>
                 <div class="form-group mt-3">
                   <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
@@ -457,6 +458,7 @@
                     <br>Nos pondremos en contacto contigo lo antes posible.
                   </div>
                 </div>
+                <div data-netlify-recaptcha="true"></div>
                 <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
               </form>
             </div>
