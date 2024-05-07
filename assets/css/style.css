@@ -82,13 +82,17 @@ h6 {
 
 .back-to-top i {
   font-size: 28px;
-  color: #fff;
+  color: #0f1120;
   line-height: 0;
 }
 
 .back-to-top:hover {
-  background: #1bd6fc;
-  color: #fff;
+  background: #fff;
+  color: #0f1120;
+}
+
+.back-to-top i:hover {
+  color: #0f1120;
 }
 
 .back-to-top.active {
@@ -682,6 +686,10 @@ section {
   color: #B3FF00;
 }
 
+#portfolio #portfolio-flters li:hover {
+  color: #03c5ec;
+}
+
 #portfolio #portfolio-flters li:last-child {
   margin-right: 0;
 }
@@ -920,14 +928,22 @@ section {
 }
 
 #contact .info {
-  color: #333333;
+  color: #0f1120;
 }
 
 #contact .info i {
   font-size: 32px;
-  color: #B3FF00;
+  color: #0f1120;
   float: left;
   line-height: 0;
+}
+
+#contact .info a {
+  color: #03c5ec;
+}
+
+#contact .info a:hover {
+  color: #B3FF00;
 }
 
 #contact .info p {
@@ -991,12 +1007,13 @@ section {
   background: #B3FF00;
   border: 0;
   padding: 10px 24px;
-  color: #fff;
+  color: #0f1120;
   transition: 0.4s;
 }
 
 #contact .php-email-form button[type=submit]:hover {
   background: #0f1120;
+  color: #B3FF00;
 }
 
 @keyframes animate-loading {
